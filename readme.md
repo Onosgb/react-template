@@ -80,3 +80,16 @@ template: path.resolve(__dirname, "..", "./src/index.html"),
    test:/\.(?:ico|gif|png|jpg)$/i,
    type: 'asset/resource
    }
+
+# How to add fonts and svg to your app
+
+1. Go to declearation.d.ts file
+2. enter the rules below
+   declare module '\*.svg'
+3. Go to webpack.config.ts file
+4. Go to rules
+5. enter the code below
+   {
+   test: /\.(woff(2)?|eot|ttf|svg|)$/,
+   type: 'asset/inline',
+   }
