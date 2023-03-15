@@ -60,3 +60,23 @@ template: path.resolve(__dirname, "..", "./src/index.html"),
 ],
 }; 15. enter the start command on the scripts in package.json file
 "start" : "webpack serve --config wepack/webpack.config.js --open"
+
+# how to add css to the project
+
+1.  yarn add css-loader style-loader
+2.  copy and paste this code below inside rules in webpack file
+    {
+    test: /\.css$/,
+    use: ['style-loader', 'css-loader']
+    }
+
+# How to add image import on the project
+
+1. create a file with the name declearaton.d.ts
+2. type the code below in the file
+   declare module '\*.png'
+3. paste the code below on the webpack file under rules
+   {
+   test:/\.(?:ico|gif|png|jpg)$/i,
+   type: 'asset/resource
+   }
