@@ -1,4 +1,4 @@
-Setting up react typescript starter project with webpack from scratch
+# Setting up react typescript starter project with webpack from scratch
 
 1. create the project folder
 2. git init
@@ -30,36 +30,39 @@ Setting up react typescript starter project with webpack from scratch
     const path = require("path");
     const HtmlWebpackPlugin = require("html-webpack-plugin");
 
-module.exports = {
-entry: path.resolve(**dirname, "..", "./src/index.tsx"),
-resolve: {
-extensions: [".tsx", ".ts", ".js"],
-},
-module: {
-rules: [
-{
-test: /\.(ts|js)x?$/,
-exclude: /node_modules/,
-use: [
-{
-loader: "babel-loader",
-},
-],
-},
-],
-},
-output: {
-path: path.resolve(**dirname, "..", "./build"),
-filename: "bundle.js",
-},
-mode: "development",
-plugins: [
-new HtmlWebpackPlugin({
-template: path.resolve(__dirname, "..", "./src/index.html"),
-}),
-],
-}; 15. enter the start command on the scripts in package.json file
-"start" : "webpack serve --config wepack/webpack.config.js --open"
+    module.exports = {
+    entry: path.resolve(**dirname, "..", "./src/index.tsx"),
+    resolve: {
+    extensions: [".tsx", ".ts", ".js"],
+    },
+    module: {
+    rules: [
+    {
+    test: /\.(ts|js)x?$/,
+    exclude: /node_modules/,
+    use: [
+    {
+    loader: "babel-loader",
+    },
+    ],
+    },
+    ],
+    },
+    output:
+    {
+    path: path.resolve(**dirname, "..", "./build"),
+    filename: "bundle.js",
+    },
+    mode: "development",
+    plugins: [
+    new HtmlWebpackPlugin({
+    template: path.resolve(__dirname, "..", "./src/index.html"),
+    }),
+    ],
+    };
+
+16. enter the start command on the scripts in package.json file
+    "start" : "webpack serve --config wepack/webpack.config.js --open"
 
 # how to add css to the project
 
