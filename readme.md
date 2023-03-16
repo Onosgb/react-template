@@ -96,3 +96,70 @@
    test: /\.(woff(2)?|eot|ttf|svg|)$/,
    type: 'asset/inline',
    }
+
+# Changing the webpack.config.js to webpack.common.js in other for it to accept both production and developement setup.
+
+1. Remove the mode property from the
+   webpack file
+2. create 3 files in the webpack folder
+   webpack.dev.js, webpack.prod.js, webpack.config.js
+3. add the dev and prod configuration
+
+# compy and past the code below on the dev config file
+
+    const webpack = require("webpack");
+    module.exports = {
+    mode: "development",
+    devtool: "cheap-module-source-map",
+    plugins: [
+        new webpack.DefinePlugin({
+        "process.env.name": JSON.stringify("Vishwas"),
+        }),
+    ],
+    };
+
+# compy and past the code below on the prod config file
+
+    const webpack = require("webpack");
+    module.exports = {
+    mode: "production",
+    devtool: "source-map",
+    plugins: [
+        new webpack.DefinePlugin({
+        "process.env.name": JSON.stringify("Codevolution"),
+        }),
+    ],
+    };
+
+# we are going to populate webpack.config.js file which will the common.config file with either the prod or dev config file
+
+1. yarn add -D webpack-merge
+2. copy and paste the code below on
+   webpack.config.js
+   const {merge} = require('webpack-merge');
+3. import webpack.common.js in
+   webpack.config.js file
+
+   const commonConfig = require('./webpack.common.js')
+
+4. export the merge file as a function in webpack.config.js file
+
+   module.exports = (envVars) => {
+   const { env } = envVars;
+   const envConfig = require(`./webpack.${env}.js`);
+   const config = merge(commonConfig, envConfig);
+   return config;
+   };
+
+5. Open the package.json file
+6. Replace the start script with the code below
+   "start": "webpack serve --config webpack/webpack.config.js --env env=dev --open",
+7. copy and past the code below and paste under the start script.
+
+   "build": "webpack --config webpack/webpack.config.js --env env=prod --open",
+
+# How to run your project
+
+Development - npm run start
+
+Production - npx serve
