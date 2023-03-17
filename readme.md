@@ -163,3 +163,18 @@
 Development - npm run start
 
 Production - npx serve
+
+# Adding the feature of react refresh to our application
+
+1.  yarn add -D @pmmmwh/react-refresh-webpack-plugin react-refresh
+
+2.  copy the code below and paste in webpack.dev.js
+    devServer: {
+    hot: true
+    }
+3.  import the plugin you just installed
+
+    const ReactRefreshWebpackPlugin = require("@pmmmwh/react-refresh-webpack-plugin");
+
+4.  add it to this code below to the list plugins
+    new ReactRefreshWebpackPlugin()
