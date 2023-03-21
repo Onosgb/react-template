@@ -178,3 +178,56 @@ Production - npx serve
 
 4.  add it to this code below to the list plugins
     new ReactRefreshWebpackPlugin()
+
+# How to add ESLint to the project
+
+# I'ts a package for add catch error in the project.
+
+1. Yarn add -D eslint
+2. yarn add -D eslint-plugin-react eslint-plugin-react-hooks
+3. yarn add -D @typescript-eslint/parser @typescript-eslint/eslint-plugin
+4. create a .eslintrc.js file in the root of your project
+5. copy the code below and paste into the eslintrc.js file
+   module.exports = {
+   parser: "@types-eslint/parser",
+   parserOptions: {
+   ecmaVersion: 2020,
+   sourceType: "module",
+   },
+   extends: [
+   "plugin:react/recommended",
+   "plugin:react-hooks/recommended",
+   "plugin:@typescript-eslint/recommended",
+   ],
+   rules: {
+   "no-unused-vars": "off",
+   "@typescript-eslint/no-unused-vars": ["error"],
+   "@typescript-eslint/no-var-requires": "off",
+   "react/prop-types": "off",
+   "react/jsx-uses-react": "off",
+   "react/react-in-jsx-scope": "off",
+   "@typescript-eslint/explicit-module-boundary-types": "off",
+   },
+   settings: {
+   react: {
+   version: "detect",
+   },
+   },
+   };
+
+# how to add check in wrong import/pathnames, and spelling error i es6
+
+# we will install the a11y plugin that add accessibility partern to your realtime project.
+
+1. $ yarn add -D eslint-plugin-import eslint-pl
+   ugin-jsx-a11y
+
+2. Modify the extends property in your .eslintrc.js file
+
+3. add the settings below
+   'plugin:import/errors',
+   'plugin:import/warnings',
+   'plugin:import/typescript
+   "plugin:jsx-a11y/recommended"
+4. copy the code below and paste in package.json file inside the scripts object
+   "lint": "eslint --fix \"./src/\*_/_.{js,jsx,ts,tsx,json}\""
